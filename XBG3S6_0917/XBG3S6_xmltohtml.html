@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    
+<head>
+    <meta charset='UTF-8'>
+    <title>Órarend</title>
+    <style>
+        body{
+            background-color: #ebc4f3; 
+        }
+        table {
+            border-collapse: collapse;
+            width: 94%;
+            margin-left:3%;
+        }
+        td{
+            border: 2px solid rgb(237, 210, 237);
+            padding: 10px 2px;
+        }
+        .tableheader {
+            background-color: #9567b0; 
+            color: whitesmoke;
+            text-align: center;
+        }
+        .elmelet, .gyakorlat, .eloadas {
+            color: #1b0000; 
+        }
+        .time{
+            text-align: center;
+        }
+        td:nth-child(2), td:nth-child(3), td:nth-child(4){
+            text-align: center;
+        }
+        .lastofday td{
+            border-bottom: 2px solid rgb(206, 92, 92);
+        }
+
+        table tr:nth-child(n+2):nth-child(even) {
+            background-color: #e1b1e7; 
+        }
+        table tr:nth-child(n+2):nth-child(odd) {
+            background-color: #bd93cc; 
+        }
+
+        table tr:hover td {
+            background-color: #f0e0ff;
+            transition: 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr class="tableheader">
+            <td>Tárgy</td>
+            <td colspan="2">Időpont</td>
+            <td>Helyszín</td>
+            <td>Oktató</td>
+            <td>Szak</td>
+        </tr>
+
+        <tr class="eloadas">
+            <td>Adatkezelés XML-ben</td>
+            <td>Szerda</td>
+            <td>8:00-9:30</td>
+            <td>A1/310</td>
+            <td>Prof. Dr. Kovács László</td>
+            <td>gazdaságinformatikus</td>
+        </tr>
+
+        <tr class="gyakorlat">
+            <td>Adatkezelés XML-ben</td>
+            <td>Szerda</td>
+            <td>10:00-11:30</td>
+            <td>L103</td>
+            <td>Dr. Bednarik László</td>
+            <td>gazdaságinformatikus</td>
+        </tr>
+
+        <tr class="elmelet">
+            <td>Vállalati információs rendszerek fejlesztése</td>
+            <td>Szerda</td>
+            <td>14:00-15:30</td>
+            <td>L103</td>
+            <td>Dr. Sasvári Péter</td>
+            <td>gazdaságinformatikus</td>
+        </tr>
+
+        <tr class="gyakorlat">
+            <td>Vállalati információs rendszerek fejlesztése</td>
+            <td>Szerda</td>
+            <td>18:00-19:30</td>
+            <td>L103</td>
+            <td>Dr. Sasvári Péter</td>
+            <td>gazdaságinformatikus</td>
+        </tr>
+
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mozi>
+    <film id="film1" mufaj="drama">
+        <rendezo id="rendezo1" nev="Jenny Han"/>
+        <szinesz id="szinesz1" nev="Lola Tung"/>
+        <szinesz id="szinesz2">
+            <gyerekszinesz/>
+            <felnottszinesz/>
+            <musicalszinesz/>
+        </szinesz>
+        <iro id="iro1"/>
+    </film>
+    <film id="film2" mufaj="romantikus">
+        <rendezo id="rendezo2">
+            <amerikai/>
+            <fiatal/>
+        </rendezo>
+        <iro id="iro2">
+            <regeny/>
+            <sorozatadaptacio/>
+        </iro>
+    </film>
+</mozi>
