@@ -1,0 +1,26 @@
+<!ELEMENT mozi (film*)>
+
+<!ELEMENT film (rendezo+, szinesz+, iro+)>
+<!ATTLIST film 
+    id ID #REQUIRED
+>
+<!ATTLIST film 
+    mufaj (horror|drama|komedia)
+>
+
+<!ELEMENT rendezo EMPTY>
+<!ATTLIST rendezo 
+    id ID #REQUIRED
+    nev CDATA #IMPLIED
+>
+
+<!ELEMENT szinesz EMPTY>
+<!ATTLIST szinesz 
+    id ID #REQUIRED
+    nev CDATA #IMPLIED
+>
+
+<!ELEMENT iro EMPTY>
+<!ATTLIST iro 
+    id ID #REQUIRED
+>
