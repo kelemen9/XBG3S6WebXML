@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="XBG3S6_orarend" type="orarendType"/>
+
+  <xs:complexType name="orarendType">
+    <xs:sequence>
+      <xs:element name="ora" type="oraType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="oraType">
+    <xs:sequence>
+      <xs:element name="targy" type="xs:string"/>
+      <xs:element name="idopont" type="idopontType"/>
+      <xs:element name="helyszin" type="xs:string"/>
+      <xs:element name="oktato" type="xs:string"/>
+      <xs:element name="szak" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:integer" use="required"/>
+    <xs:attribute name="tipus" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="idopontType">
+    <xs:sequence>
+      <xs:element name="nap" type="napSzerdaType"/>
+      <xs:element name="tol" type="tolEnumType"/>
+      <xs:element name="ig"  type="igEnumType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="napSzerdaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Szerda"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tolEnumType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="8:00"/>
+      <xs:enumeration value="10:00"/>
+      <xs:enumeration value="14:00"/>
+      <xs:enumeration value="18:00"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="igEnumType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="9:30"/>
+      <xs:enumeration value="11:30"/>
+      <xs:enumeration value="15:30"/>
+      <xs:enumeration value="19:30"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

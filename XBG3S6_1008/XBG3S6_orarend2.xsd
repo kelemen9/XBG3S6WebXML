@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <!-- =========================
+       SAJÁT ALAPTÍPUSOK
+       ========================= -->
+
+  <!-- Nem üres szöveg -->
+  <xs:simpleType name="nonEmptyString">
+    <xsrestriction base="xs:string">
+      <xs:pattern value=".*\S.*"/>
+    </xsrestriction>
+  </xs:simpleType>
+
+  <!-- Óra azonosító: pozitív egész -->
+  <xs:simpleType name="oraIdType">
+    <xs:restriction base="xs:positiveInteger"/>
+  </xs:simpleType>
+
+  <!-- Óratípus: csak a 3 engedélyezett érték -->
+  <xs:simpleType name="oraTipusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="eloadas"/>
+      <xs:enumeration value="gyakorlat"/>
+      <xs:enumeration value="elmelet"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Hét napjai (HU) -->
+  <xs:simpleType name="napType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Hétfő"/>
+      <xs:enumeration value="Kedd"/>
+      <xs:enumeration value="Szerda"/>
+      <xs:enumeration value="Csütörtök"/>
+      <xs:enumeration value="Péntek"/>
+      <xs:enumeration value="Szombat"/>
+      <xs:enumeration value="Vasárnap"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Időpont (HH:MM, 24h; 8:00 is ok) -->
+  <xs:simpleType name="oraPercType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(?:[01]?\d|2[0-3]):[0-5]\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Helyszín: két gyakori forma:
+       - ÉpületSzint/terem  pl. A1/310
+       - Épület + három szám pl. L103
+       Unióval engedélyezzük mindkettőt -->
+  <xs:simpleType name="helyszinType">
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[A-Z]\d+/\d+"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[A-Z]\d{3}"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+
+  <!-- Oktató neve: nem üres (a címek/ékezetek megengedettek) -->
+  <xs:simpleType name="oktatoNevType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value=".*\S.*"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Szak megnevezés: most fixen a példabeli, de könnyen bővíthető -->
+  <xs:simpleType name="szakType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="gazdaságinformatikus"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- =========================
+       KOMPLEX TÍPUSOK
+       ========================= -->
+
+  <!-- Időpont blokk (nap, tól, ig) -->
+  <xs:complexType name="idopontType">
+    <xs:sequence>
+      <xs:element name="nap" type="napType"/>
+      <xs:element name="tol" type="oraPercType"/>
+      <xs:element name="ig"  type="oraPercType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Egy óra bejegyzés -->
+  <xs:complexType name="oraType">
+    <xs:sequence>
+      <xs:element name="targy"    type="nonEmptyString"/>
+      <xs:element name="idopont"  type="idopontType"/>
+      <xs:element name="helyszin" type="helyszinType"/>
+      <xs:element name="oktato"   type="oktatoNevType"/>
+      <xs:element name="szak"     type="szakType"/>
+    </xs:sequence>
+    <xs:attribute name="id"    type="oraIdType"    use="required"/>
+    <xs:attribute name="tipus" type="oraTipusType" use="required"/>
+  </xs:complexType>
+
+  <!-- =========================
+       GYÖKÉR ELEM
+       ========================= -->
+
+  <xs:element name="XBG3S6_orarend">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ora" type="oraType" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+
+    <!-- Egyediség: az azonosítók ne ismétlődjenek -->
+    <xs:unique name="egyediOraId">
+      <xs:selector xpath="ora"/>
+      <xs:field    xpath="@id"/>
+    </xs:unique>
+  </xs:element>
+
+</xs:schema>
