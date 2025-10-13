@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<XBG3S6_orarend>
+
+    <ora id="1" tipus="eloadas">
+        <targy>Adatkezelés XML-ben</targy>
+        <idopont>
+            <nap>Szerda</nap>
+            <tol>8:00</tol>
+            <ig>9:30</ig>
+        </idopont>
+        <helyszin>A1/310</helyszin>
+        <oktato>Prof. Dr. Kovács László</oktato>
+        <szak>gazdaságinformatikus</szak>
+    </ora>
+
+    <ora id="2" tipus="gyakorlat">
+        <targy>Adatkezelés XML-ben</targy>
+        <idopont>
+            <nap>Szerda</nap>
+            <tol>10:00</tol>
+            <ig>11:30</ig>
+        </idopont>
+        <helyszin>L103</helyszin>
+        <oktato>Dr. Bednarik László</oktato>
+        <szak>gazdaságinformatikus</szak>
+    </ora>
+
+    <ora id="3" tipus="elmelet">
+        <targy>Vállalati információs rendszerek fejlesztése</targy>
+        <idopont>
+            <nap>Szerda</nap>
+            <tol>14:00</tol>
+            <ig>15:30</ig>
+        </idopont>
+        <helyszin>L103</helyszin>
+        <oktato>Dr. Sasvári Péter</oktato>
+        <szak>gazdaságinformatikus</szak>
+    </ora>
+
+    <ora id="4" tipus="gyakorlat">
+        <targy>Vállalati információs rendszerek fejlesztése</targy>
+        <idopont>
+            <nap>Szerda</nap>
+            <tol>18:00</tol>
+            <ig>19:30</ig>
+        </idopont>
+        <helyszin>L103</helyszin>
+        <oktato>Dr. Sasvári Péter</oktato>
+        <szak>gazdaságinformatikus</szak>
+    </ora>
+
+</XBG3S6_orarend>
