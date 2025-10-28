@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <!-- =========================
+       SAJÁT EGYSZERŰ TÍPUSOK
+       ========================= -->
+  <!-- Kódok -->
+  <xs:simpleType name="VendegKodType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="V\d{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EtteremKodType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="E\d{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FoszakacsKodType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="F\d{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SzakacsKodType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="SZ\d{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="GyakornokKodType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="GY\d{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="RendelesKodType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="R\d{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Szöveges mezők -->
+  <xs:simpleType name="NevType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SzovegType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="80"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Számok / dátumok -->
+  <xs:simpleType name="EletkorType">
+    <xs:restriction base="xs:nonNegativeInteger">
+      <xs:maxInclusive value="120"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="HazszamType">
+    <xs:restriction base="xs:positiveInteger">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="9999"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CsillagType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="OsszegType">
+    <xs:restriction base="xs:nonNegativeInteger"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="DatumType">
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="IdotartamType">
+    <!-- pl.: '3 honap', '10 nap', '2 ev' -->
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d+\s+(honap|nap|ev)"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- =========================
+       KOMPLEX TÍPUSOK
+       ========================= -->
+  <xs:complexType name="CimType">
+    <xs:sequence>
+      <xs:element name="Varos" type="SzovegType"/>
+      <xs:element name="Utca"  type="SzovegType"/>
+      <xs:element name="Hazszam" type="HazszamType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="VendegType">
+    <xs:sequence>
+      <xs:element name="Nev" type="NevType"/>
+      <xs:element name="Eletkor" type="EletkorType"/>
+      <xs:element name="Cim" type="CimType"/>
+    </xs:sequence>
+    <xs:attribute name="VKod" type="VendegKodType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="FoszakacsType">
+    <xs:sequence>
+      <xs:element name="Nev" type="NevType"/>
+      <xs:element name="Eletkor" type="EletkorType"/>
+      <xs:element name="Vegzettseg" type="SzovegType"/>
+    </xs:sequence>
+    <xs:attribute name="Fkod" type="FoszakacsKodType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="SzakacsType">
+    <xs:sequence>
+      <xs:element name="Nev" type="NevType"/>
+      <xs:element name="Reszleg" type="SzovegType"/>
+      <xs:element name="Vegzettseg" type="SzovegType"/>
+    </xs:sequence>
+    <xs:attribute name="SzKod" type="SzakacsKodType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="GyakorlatType">
+    <xs:sequence>
+      <xs:element name="Kezdete" type="DatumType"/>
+      <xs:element name="Idotartama" type="IdotartamType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GyakornokType">
+    <xs:sequence>
+      <xs:element name="Nev" type="NevType"/>
+      <xs:element name="Gyakorlat" type="GyakorlatType"/>
+      <xs:element name="Muszak" type="SzovegType"/>
+    </xs:sequence>
+    <xs:attribute name="GyKod" type="GyakornokKodType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="RendelesType">
+    <xs:sequence>
+      <xs:element name="Etel" type="SzovegType"/>
+      <xs:element name="Osszeg" type="OsszegType"/>
+    </xs:sequence>
+    <xs:attribute name="Rkod" type="RendelesKodType" use="required"/>
+    <xs:attribute name="VendegRef" type="VendegKodType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="EtteremType">
+    <xs:sequence>
+      <xs:element name="Nev" type="NevType"/>
+      <xs:element name="Csillag" type="CsillagType"/>
+      <xs:element name="Cim" type="CimType"/>
+      <xs:element name="Foszakacs" type="FoszakacsType"/>
+      <xs:element name="SzakacsLista" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Szakacs" type="SzakacsType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GyakornokLista" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Gyakornok" type="GyakornokType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RendelesLista" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Rendeles" type="RendelesType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="Ekod" type="EtteremKodType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="VendegListaType">
+    <xs:sequence>
+      <xs:element name="Vendeg" type="VendegType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EttermekType">
+    <xs:sequence>
+      <xs:element name="Etterem" type="EtteremType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AdatrendszerType">
+    <xs:sequence>
+      <xs:element name="VendegLista" type="VendegListaType"/>
+      <xs:element name="Ettermek" type="EttermekType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Gyökérelem -->
+  <xs:element name="Adatrendszer" type="AdatrendszerType"/>
+
+  <!-- =========================
+       KULCS / HIVATKOZÁS
+       (VendegRef → Vendeg @VKod)
+       ========================= -->
+  <xs:key name="vendegKey">
+    <xs:selector xpath="VendegLista/Vendeg"/>
+    <xs:field xpath="@VKod"/>
+  </xs:key>
+
+  <xs:keyref name="rendelesVendegRef"
+             refer="vendegKey">
+    <xs:selector xpath="Ettermek/Etterem/RendelesLista/Rendeles"/>
+    <xs:field xpath="@VendegRef"/>
+  </xs:keyref>
+
+</xs:schema>

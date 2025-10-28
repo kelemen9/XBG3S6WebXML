@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Adatrendszer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- Neptun: ABC123 (írd át a sajátodra) -->
+
+  <VendegLista>
+    <Vendeg VKod="V001">
+      <Nev>Kiss Janos</Nev>
+      <Eletkor>32</Eletkor>
+      <Cim>
+        <Varos>Miskolc</Varos>
+        <Utca>Kossuth utca</Utca>
+        <Hazszam>8</Hazszam>
+      </Cim>
+    </Vendeg>
+    <Vendeg VKod="V002">
+      <Nev>Nagy Eva</Nev>
+      <Eletkor>27</Eletkor>
+      <Cim>
+        <Varos>Debrecen</Varos>
+        <Utca>Piac utca</Utca>
+        <Hazszam>15</Hazszam>
+      </Cim>
+    </Vendeg>
+  </VendegLista>
+
+  <Ettermek>
+    <Etterem Ekod="E001">
+      <Nev>Aranykanal Etterem</Nev>
+      <Csillag>4</Csillag>
+      <Cim>
+        <Varos>Miskolc</Varos>
+        <Utca>Szinva utca</Utca>
+        <Hazszam>12</Hazszam>
+      </Cim>
+
+      <Foszakacs Fkod="F001">
+        <Nev>Kovacs Bela</Nev>
+        <Eletkor>45</Eletkor>
+        <Vegzettseg>Mesterszakacs</Vegzettseg>
+      </Foszakacs>
+
+      <SzakacsLista>
+        <Szakacs SzKod="SZ001">
+          <Nev>Toth Anna</Nev>
+          <Reszleg>Hidegkonyha</Reszleg>
+          <Vegzettseg>Szakacs</Vegzettseg>
+        </Szakacs>
+        <Szakacs SzKod="SZ002">
+          <Nev>Szabo Peter</Nev>
+          <Reszleg>Melegkonyha</Reszleg>
+          <Vegzettseg>Szakacs</Vegzettseg>
+        </Szakacs>
+      </SzakacsLista>
+
+      <GyakornokLista>
+        <Gyakornok GyKod="GY001">
+          <Nev>Nagy Peter</Nev>
+          <Gyakorlat>
+            <Kezdete>2025-02-01</Kezdete>
+            <Idotartama>3 honap</Idotartama>
+          </Gyakorlat>
+          <Muszak>Delelott</Muszak>
+        </Gyakornok>
+      </GyakornokLista>
+
+      <RendelesLista>
+        <!-- Many-to-many: Etterem (1..N) — Rendeles — Vendeg (M) -->
+        <!-- VendegRef a VendegLista/Vendeg @VKod értékére hivatkozik -->
+        <Rendeles Rkod="R001" VendegRef="V001">
+          <Etel>Marhaporolt</Etel>
+          <Osszeg>3500</Osszeg>
+        </Rendeles>
+        <Rendeles Rkod="R002" VendegRef="V002">
+          <Etel>Csirkepaprikas</Etel>
+          <Osszeg>3200</Osszeg>
+        </Rendeles>
+      </RendelesLista>
+    </Etterem>
+
+    <Etterem Ekod="E002">
+      <Nev>Ezustkanal Etterem</Nev>
+      <Csillag>5</Csillag>
+      <Cim>
+        <Varos>Budapest</Varos>
+        <Utca>Fo utca</Utca>
+        <Hazszam>3</Hazszam>
+      </Cim>
+
+      <Foszakacs Fkod="F002">
+        <Nev>Varga Timea</Nev>
+        <Eletkor>41</Eletkor>
+        <Vegzettseg>Mesterszakacs</Vegzettseg>
+      </Foszakacs>
+
+      <SzakacsLista/>
+      <GyakornokLista/>
+      <RendelesLista/>
+    </Etterem>
+  </Ettermek>
+</Adatrendszer>
