@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<XBG3S6_orarend>
+
+  <ora id="1" tipus="eloadas">
+    <targy nev="Adatkezelés XML-ben"/>
+    <idopont>
+      <nap napn="szerda"/>
+      <tol tolt="8:00"/>
+      <ig igt="10:00"/>
+    </idopont>
+    <helyszin hol="A1/310"/>
+    <oktato neve="Prof. Dr. Kovács László"/>
+    <szak sznev="Gazdaságinformatikus"/>
+  </ora>
+
+  <ora id="2" tipus="gyakorlat">
+    <targy nev="Adatkezelés XML-ben"/>
+    <idopont>
+      <nap napn="szerda"/>
+      <tol tolt="10:00"/>
+      <ig igt="12:00"/>
+    </idopont>
+    <helyszin hol="L103"/>
+    <oktato neve="Dr. Bednarik László"/>
+    <szak sznev="Gazdaságinformatikus"/>
+  </ora>
+
+  <ora id="3" tipus="eloadas">
+    <targy nev="Vállalati információs rendszerek fejlesztése"/>
+    <idopont>
+      <nap napn="szerda"/>
+      <tol tolt="14:00"/>
+      <ig igt="16:00"/>
+    </idopont>
+    <helyszin hol="L103"/>
+    <oktato neve="Dr. Sasvári Péter"/>
+    <szak sznev="Gazdaságinformatikus"/>
+  </ora>
+
+  <ora id="4" tipus="gyakorlat">
+    <targy nev="Vállalati információs rendszerek fejlesztése"/>
+    <idopont>
+      <nap napn="szerda"/>
+      <tol tolt="18:00"/>
+      <ig igt="20:00"/>
+    </idopont>
+    <helyszin hol="L103"/>
+    <oktato neve="Dr. Sasvári Péter"/>
+    <szak sznev="Gazdaságinformatikus"/>
+  </ora>
+
+</XBG3S6_orarend>

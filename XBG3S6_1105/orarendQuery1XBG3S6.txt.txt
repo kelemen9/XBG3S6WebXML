@@ -1,0 +1,8 @@
+ID: 1
+Típus: előadás
+Tárgy: Adatkezelés XML-ben
+Nap: szerda
+Időtartam: 8:00 - 10:00
+Helyszín: A1/310
+Oktató: Prof. Dr. Kovács László
+Szak: gazdaságinformatikus
