@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Órarend – XBG3S6</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 20px; }
+      h2 { color: #6e2b8b; }
+      table { border-collapse: collapse; }
+      th, td { border: 1px solid #6e2b8b; padding: 4px 8px; }
+      th { background-color: #caa3d8; }
+      td { background-color: #e6c9f0; }
+    </style>
+  </head>
+  <body>
+    <h2>Órarend – for-each, value-of</h2>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Típus</th>
+        <th>Tárgy</th>
+        <th>Nap</th>
+        <th>Időpont</th>
+        <th>Helyszín</th>
+        <th>Oktató</th>
+        <th>Szak</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>előadás</td>
+        <td>Adatkezelés XML-ben</td>
+        <td>szerda</td>
+        <td>8–10</td>
+        <td>A1/310</td>
+        <td>Prof. Dr. Kovács László</td>
+        <td>G3BGI</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>gyakorlat</td>
+        <td>Adatkezelés XML-ben</td>
+        <td>szerda</td>
+        <td>10–12</td>
+        <td>L103</td>
+        <td>Dr. Bednarik László</td>
+        <td>G3BGI</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>előadás</td>
+        <td>Vállalati információs rendszerek fejlesztése</td>
+        <td>szerda</td>
+        <td>14–16</td>
+        <td>L103</td>
+        <td>Dr. Sasvári Péter</td>
+        <td>G3BGI</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>gyakorlat</td>
+        <td>Vállalati információs rendszerek fejlesztése</td>
+        <td>szerda</td>
+        <td>18–20</td>
+        <td>L103</td>
+        <td>Dr. Sasvári Péter</td>
+        <td>G3BGI</td>
+      </tr>
+    </table>
+  </body>
+</html>
