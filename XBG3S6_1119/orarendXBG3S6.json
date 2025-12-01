@@ -1,0 +1,54 @@
+{
+    "XBG3S6_orarend": {
+        "ora":[
+            {
+                "targy": "Adatkezelés XML-ben",
+                "idopont": {
+                    "nap": "Szerda",
+                    "tol": 8,
+                    "ig": 10
+                },
+                "helyszin": "A1/310",
+                "oktato": "Prof. Dr. Kovács László",
+                "szak": "BGI"
+            },
+
+            {
+                "targy": "Adatkezelés XML-ben",
+                "idopont": {
+                    "nap": "Szerda",
+                    "tol": 10,
+                    "ig": 12
+                },
+                "helyszin": "L/103",
+                "oktato": "Dr. Bednarik László",
+                "szak": "BGI"
+            },
+
+            {
+                "targy": "Vállalati információs rendszerek fejlesztése",
+                "idopont": {
+                    "nap": "Szerda",
+                    "tol": 14,
+                    "ig": 16
+                },
+                "helyszin": "L/103",
+                "oktato": "Dr. Sasvári Péter",
+                "szak": "BGI"
+            },
+
+            {
+                "targy": "Vállalati információs rendszerek fejlesztése",
+                "idopont": {
+                    "nap": "Szerda",
+                    "tol": 18,
+                    "ig": 20
+                },
+                "helyszin": "L/103",
+                "oktato": "Dr. Sasvári Péter",
+                "szak": "BGI"
+            }
+
+        ]
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>XBG3S6 Órarend 2025</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #6e2b8b; 
+        }
+        .lesson {
+            padding: 10px;
+            border: 2px solid #6e2b8b;  
+            border-radius: 6px;
+            margin-bottom: 10px;
+            width: 360px;
+            background: #b57bd1;     
+            color: #2d0036;           
+        }
+        button {
+            padding: 10px 18px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            background: #6e2b8b;        
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>XBG3S6 Órarend 2025</h2>
+
+    <button onclick="loadJSON()">Órarend betöltése</button>
+
+    <div id="output"></div>
+
+    <script>
+        function loadJSON() {
+            fetch("orarendXBG3S6.json")     
+                .then(response => response.json())
+                .then(data => {
+
+                    const root = data.XBG3S6_orarend;
+                    const lessons = root.ora;
+
+                    const out = document.getElementById("output");
+                    out.innerHTML = "";     
+
+                    lessons.forEach(lesson => {
+                        const div = document.createElement("div");
+                        div.className = "lesson";
+
+                        div.innerHTML =
+                            "<strong>Tárgy:</strong> " + lesson.targy + "<br>" +
+                            "<strong>Helyszín:</strong> " + lesson.helyszin + "<br>" +
+                            "<strong>Oktató:</strong> " + lesson.oktato + "<br>" +
+                            "<strong>Szak:</strong> " + lesson.szak + "<br>" +
+                            "<strong>Nap:</strong> " + lesson.idopont.nap + "<br>" +
+                            "<strong>Időpont:</strong> " +
+                                lesson.idopont.tol + "–" + lesson.idopont.ig;
+
+                        out.appendChild(div);
+                    });
+
+                })
+                .catch(err => {
+                    console.error("Hiba a JSON betöltésekor:", err);
+                });
+        }
+    </script>
+
+</body>
+</html>
