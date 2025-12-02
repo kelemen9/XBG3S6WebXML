@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XBG3S6XML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="XBG3S6_XMLSchema.xsd">
+    <beszallito BeszallitoID="B01">
+        <nev>Liszt Kft.</nev>
+        <cim>
+            <varos>Miskolc</varos>
+            <iranyitoszam>3525</iranyitoszam>
+            <utca>Kenyérgyár utca</utca>
+            <hazszam>12</hazszam>
+        </cim>
+        <telefonszam>36301234567</telefonszam>
+        <telefonszam>36701234567</telefonszam>
+    </beszallito>
+    <beszallito BeszallitoID="B02">
+        <nev>Cukorvilág Bt.</nev>
+        <cim>
+            <varos>Debrecen</varos>
+            <iranyitoszam>4026</iranyitoszam>
+            <utca>Cukrász tér</utca>
+            <hazszam>3</hazszam>
+        </cim>
+        <telefonszam>36201239876</telefonszam>
+    </beszallito>
+    <cukraszda CukraszdaID="C01">
+        <nev>Kisgergely Cukrászda</nev>
+        <nyitvatartas>H–P 9:00–20:00</nyitvatartas>
+        <elerhetoseg>
+            <weboldal>https://kisgergely.hu</weboldal>
+            <telefonszam>36303037697</telefonszam>
+        </elerhetoseg>
+    </cukraszda>
+    <cukraszda CukraszdaID="C02">
+        <nev>Gyöngy Cukrászda</nev>
+        <nyitvatartas>H–V 10:00–19:00</nyitvatartas>
+        <elerhetoseg>
+            <weboldal>https://kisgergely.hu</weboldal>
+            <telefonszam>3646531241</telefonszam>
+        </elerhetoseg>
+    </cukraszda>
+    <futar FutarID="F01">
+        <nev>Nagy Péter</nev>
+        <telefonszam>36701234598</telefonszam>
+    </futar>
+    <futar FutarID="F02">
+        <nev>Kiss Réka</nev>
+        <telefonszam>36709876543</telefonszam>
+    </futar>
+    <vevo VevoID="V01">
+        <nev>Kovács Anna</nev>
+        <cim>
+            <varos>Miskolc</varos>
+            <iranyitoszam>3527</iranyitoszam>
+            <utca>Hegyalja ut</utca>
+            <hazszam>7</hazszam>
+        </cim>
+        <telefonszam>36201234567</telefonszam>
+        <telefonszam>36701234567</telefonszam>
+        <email>anna.kovacs@example.com</email>
+    </vevo>
+    <vevo VevoID="V02">
+        <nev>Szabó Bence</nev>
+        <cim>
+            <varos>Eger</varos>
+            <iranyitoszam>3300</iranyitoszam>
+            <utca>Kazinczy ter</utca>
+            <hazszam>8</hazszam>
+        </cim>
+        <telefonszam>36205556666</telefonszam>
+        <email>bence.szabo@example.com</email>
+    </vevo>
+    <bankkartya Kartyaszam="4444333322221111" VevoID="V01">
+        <lejarat>2026-09</lejarat>
+        <bank>OTP Bank</bank>
+    </bankkartya>
+    <bankkartya Kartyaszam="5555444433332222" VevoID="V02">
+        <lejarat>2027-03</lejarat>
+        <bank>Erste Bank</bank>
+    </bankkartya>
+    <sutemeny CukraszdaID="C01" RendelesID="R01">
+        <termek>Pannonhalmi karamellas torta szelet</termek>
+        <mennyiseg>2</mennyiseg>
+        <ar>1400</ar>
+    </sutemeny>
+    <sutemeny CukraszdaID="C01" RendelesID="R02">
+        <termek>Dobos torta szelet</termek>
+        <mennyiseg>1</mennyiseg>
+        <ar>1100</ar>
+    </sutemeny>
+    <sutemeny CukraszdaID="C02" RendelesID="R03">
+        <termek>Rákóczi túrós</termek>
+        <mennyiseg>6</mennyiseg>
+        <ar>1500</ar>
+    </sutemeny>
+    <beszallitas BeszallitasID="BSZ01" BeszallitoID="B01" CukraszdaID="C01">
+        <datum>2025-12-20</datum>
+        <hozzavallalok>Finomliszt, vaj, cukor</hozzavallalok>
+    </beszallitas>
+    <beszallitas BeszallitasID="BSZ02" BeszallitoID="B02" CukraszdaID="C02">
+        <datum>2025-12-05</datum>
+        <hozzavallalok>Csokolade, tojas</hozzavallalok>
+    </beszallitas>
+    <rendeles RendelesID="R01" RendelesTetelID="RT01" VevoID="V01">
+        <datum>2025-12-01</datum>
+    </rendeles>
+    <rendeles RendelesID="R02" RendelesTetelID="RT02" VevoID="V01">
+        <datum>2025-12-02</datum>
+    </rendeles>
+    <rendeles RendelesID="R03" RendelesTetelID="RT03" VevoID="V02">
+        <datum>2025-12-03</datum>
+    </rendeles>
+    <szallitas CukraszdaID="C01" FutarID="F01" RendelesID="R01" SzallitasID="SZ01">
+        <mod>Házhoz szállítás</mod>
+        <szallitasi_koltseg>1500</szallitasi_koltseg>
+        <megjegyzes>A rendelés 12:00 és 14:00 között érkezik.</megjegyzes>
+    </szallitas>
+    <szallitas CukraszdaID="C02" FutarID="F02" RendelesID="R03" SzallitasID="SZ02">
+        <mod>Házhoz szállítás</mod>
+        <szallitasi_koltseg>1800</szallitasi_koltseg>
+        <megjegyzes>Csengessenek.</megjegyzes>
+    </szallitas>
+    <fizetes FizetesID="FZ01" Kartyaszam="4444333322221111" RendelesID="R01" VevoID="V01">
+        <osszeg>3500</osszeg>
+        <datum>2025-12-01</datum>
+    </fizetes>
+    <fizetes FizetesID="FZ02" Kartyaszam="5555444433332222" RendelesID="R03" VevoID="V02">
+        <osszeg>3900</osszeg>
+        <datum>2025-12-05</datum>
+    </fizetes>
+</XBG3S6XML>
