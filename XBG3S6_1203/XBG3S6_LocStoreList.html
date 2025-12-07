@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>XBG3S6_1203</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fdf2ff;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #a21caf;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 18px;
+        max-width: 900px;
+        margin: 15px auto;
+        box-shadow: 0 0 18px rgba(162, 28, 175, 0.18);
+        border: 2px solid #e9d5ff;
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #a21caf;
+        border-bottom: 1px solid #e9d5ff;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"], input[type="file"] {
+        padding: 8px;
+        border-radius: 10px;
+        border: 1px solid #d8b4fe;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+        border-color: #a855f7;
+        box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+    }
+
+    button {
+        padding: 8px 14px;
+        background: #d946ef;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #a21caf;
+    }
+
+    .top-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+    .info {
+        font-size: 12px;
+        color: #6b21a8;
+        margin-top: 5px;
+    }
+
+    #listContainer {
+        margin-top: 15px;
+    }
+
+    .lesson-card {
+        border-radius: 12px;
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        background: #fdf4ff;
+        border: 1px solid #e9d5ff;
+        box-shadow: 0 0 8px rgba(162, 28, 175, 0.12);
+    }
+
+    .lesson-title {
+        font-weight: bold;
+        font-size: 16px;
+        color: #7e22ce;
+        margin-bottom: 6px;
+    }
+
+    .lesson-line {
+        font-size: 14px;
+        margin: 2px 0;
+        color: #4b5563;
+    }
+
+    .highlight {
+        color: #6b21a8;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<h1>XBG3S6_1203</h1>
+
+<div class="container">
+    <div class="section-title">XBG3S6 Orarend JSON</div>
+
+    <div class="top-row">
+        <input type="file" id="fileInput" accept="application/json">
+        <button id="loadBtn">LocalStorage betöltése</button>
+    </div>
+
+    <div class="section-title" style="margin-top:20px;">Keresés tárgy szerint</div>
+    <input type="text" id="search" placeholder="Pl.: Adatkezelés XML-ben" style="width:100%;">
+
+    <div id="listContainer"></div>
+</div>
+
+<script>
+    const STORAGE_KEY = 'orarend_XBG3S6';
+    let lessons = [];
+
+    window.addEventListener('load', () => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+            try {
+                lessons = JSON.parse(stored);
+            } catch (e) {
+                lessons = [];
+            }
+        }
+        renderList();
+    });
+
+    //JSON betöltése + LS mentés
+    document.getElementById('loadBtn').addEventListener('click', () => {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert('Válassz ki egy JSON órarend fájlt!');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (Array.isArray(data)) {
+                    lessons = data;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(lessons));
+                    renderList();
+                    alert('Órarend sikeresen betöltve a LocalStorage-be.');
+                } else {
+                    alert('A JSON nem tömb formátumú!');
+                }
+            } catch (err) {
+                alert('Hibás JSON fájl!');
+            }
+        };
+        reader.readAsText(file);
+    });
+
+    // keresőmező
+    document.getElementById('search').addEventListener('input', renderList);
+
+    function renderList() {
+        const cont = document.getElementById('listContainer');
+        cont.innerHTML = '';
+
+        const filter = document.getElementById('search').value.toLowerCase();
+
+        let filtered = lessons.filter(l =>
+            (l.targy || '').toLowerCase().includes(filter)
+        );
+
+        if (filtered.length === 0) {
+            cont.innerHTML = '<div class="info">Nincs megjeleníthető óra.</div>';
+            return;
+        }
+
+        filtered.forEach(l => {
+            const div = document.createElement('div');
+            div.className = 'lesson-card';
+            div.innerHTML = `
+                <div class="lesson-title">${l.targy || ''}</div>
+                <div class="lesson-line"><span class="highlight">Nap:</span> ${l.nap || ''}</div>
+                <div class="lesson-line"><span class="highlight">Idő:</span> ${l.tol || ''} - ${l.ig || ''}</div>
+                <div class="lesson-line"><span class="highlight">Helyszín:</span> ${l.helyszin || ''}</div>
+                <div class="lesson-line"><span class="highlight">Oktató:</span> ${l.oktato || ''}</div>
+                <div class="lesson-line"><span class="highlight">Szak:</span> ${l.szak || ''}</div>
+            `;
+            cont.appendChild(div);
+        });
+    }
+</script>
+
+</body>
+</html>

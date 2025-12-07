@@ -1,0 +1,16 @@
+[
+  {
+    "nev": "Kelemen Beáta",
+    "evfolyam": 4,
+    "szak": "BGI",
+    "email": "kelemenbeata64@gmail.com",
+    "neptunkod": "XBG3S6"
+  },
+  {
+    "nev": "Kiss Péter",
+    "evfolyam": 3,
+    "szak": "MI",
+    "email": "kisspeter@example.com",
+    "neptunkod": "ABC123"
+  }
+]

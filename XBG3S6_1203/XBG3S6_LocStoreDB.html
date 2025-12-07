@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>XBG3S6_1203</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fdf2ff;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #a21caf;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        color: #a21caf;
+        margin-top: 0;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 18px;
+        max-width: 900px;
+        margin: 15px auto;
+        box-shadow: 0 0 18px rgba(162, 28, 175, 0.18);
+        border: 2px solid #e9d5ff;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        color: #86198f;
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 10px;
+        border: 1px solid #d8b4fe;
+        margin-top: 4px;
+        box-sizing: border-box;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border-color: #a855f7;
+        box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 10px 15px;
+        background: #d946ef;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #a21caf;
+    }
+
+    .btn-secondary {
+        background: #53304f;
+    }
+    .btn-secondary:hover {
+        background: #ea580c;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .col-50 {
+        flex: 1 1 48%;
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #a21caf;
+        border-bottom: 1px solid #e9d5ff;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    /* tábla */
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    th, td {
+        border: 1px solid #e5e7eb;
+        padding: 8px 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    th {
+        background: #f5f3ff;
+        color: #6b21a8;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background: #fdf4ff;
+    }
+
+    tr:hover {
+        background: #fce7f3;
+    }
+
+    .actions {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .btn-table {
+        margin: 0 2px;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .btn-edit {
+        background: #a855f7;
+    }
+
+    .btn-edit:hover {
+        background: #7c3aed;
+    }
+
+    .btn-delete {
+        background: #845470;
+    }
+
+    .btn-delete:hover {
+        background: #4d294a;
+    }
+
+    .icon {
+        font-weight: bold;
+    }
+
+    .info {
+        font-size: 12px;
+        color: #6b21a8;
+        margin-top: 5px;
+    }
+
+    .file-input-wrapper {
+        margin-top: 10px;
+    }
+
+    .neptun-label {
+        font-size: 13px;
+        color: #6b21a8;
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+
+<h1>XBG3S6_1203</h1>
+
+<div class="container">
+    <h2>Új hallgató hozzáadása/módosítása</h2>
+
+    <div class="row">
+        <div class="col-50">
+            <label for="nev">Név:</label>
+            <input type="text" id="nev" placeholder="Pl.: Kelemen Beáta">
+        </div>
+        <div class="col-50">
+            <label for="evfolyam">Évfolyam:</label>
+            <input type="number" id="evfolyam" min="1" max="10" placeholder="Pl.: 1">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-50">
+            <label for="szak">Szak:</label>
+            <input type="text" id="szak" placeholder="Pl.: BGI">
+        </div>
+        <div class="col-50">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="pl.: kelemen.beata@student.uni-miskolc.hu">
+        </div>
+    </div>
+
+    <label for="neptunkod">NEPTUN kód:</label>
+    <input type="text" id="neptunkod" placeholder="Pl.: XBG3S6">
+
+    <button id="saveBtn">Mentés</button>
+    <span class="info" id="statusMsg"></span>
+</div>
+
+<div class="container">
+    <div class="section-title">Keresés</div>
+    <input type="text" id="search" placeholder="Keresés">
+
+    <div class="section-title">Rendezés</div>
+    <select id="sortSelect">
+        <option value="">Nincs rendezés</option>
+        <option value="nevAsc">Név (A–Z)</option>
+        <option value="nevDesc">Név (Z–A)</option>
+        <option value="evAsc">Évfolyam növekvő</option>
+        <option value="evDesc">Évfolyam csökkenő</option>
+    </select>
+
+    <div class="section-title">Export / Import JSON</div>
+    <button id="exportBtn" class="btn-secondary">Export JSON</button>
+
+    <div class="file-input-wrapper">
+        <input type="file" id="importFile" accept="application/json">
+        <button id="importBtn">Import JSON</button>
+    </div>
+    <div class="info">Exportáláskor egy JSON fájlban menti a hallgatók listáját, importáláskor betölti azt a Local Storage-be.</div>
+</div>
+
+<div class="container">
+    <div class="section-title">Hallgatók listája</div>
+    <table id="studentsTable">
+        <thead>
+            <tr>
+                <th>Név</th>
+                <th>Évfolyam</th>
+                <th>Szak</th>
+                <th>Email</th>
+                <th>NEPTUN</th>
+                <th style="text-align:center;">Műveletek</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const STORAGE_KEY = 'hallgatok_XBG3S6';
+    let students = [];
+    let editIndex = null;
+
+    window.addEventListener('load', () => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+            try {
+                students = JSON.parse(stored);
+            } catch (e) {
+                students = [];
+            }
+        }
+        renderTable();
+    });
+
+    function saveToStorage() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+    }
+
+    function clearForm() {
+        document.getElementById('nev').value = '';
+        document.getElementById('evfolyam').value = '';
+        document.getElementById('szak').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('neptunkod').value = '';
+        editIndex = null;
+        document.getElementById('saveBtn').textContent = 'Mentés';
+    }
+
+    document.getElementById('saveBtn').addEventListener('click', () => {
+        const nev = document.getElementById('nev').value.trim();
+        const evfolyam = document.getElementById('evfolyam').value.trim();
+        const szak = document.getElementById('szak').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const neptunkod = document.getElementById('neptunkod').value.trim();
+
+        if (!nev || !evfolyam || !szak || !email || !neptunkod) {
+            showStatus('Minden mező kitöltése kötelező!', true);
+            return;
+        }
+
+        const student = { nev, evfolyam: Number(evfolyam), szak, email, neptunkod };
+
+        if (editIndex === null) {
+            students.push(student);
+            showStatus('A hallgató mentése sikeres', false);
+        } else {
+            students[editIndex] = student;
+            showStatus('A hallgató módosítása sikeres', false);
+        }
+
+        saveToStorage();
+        renderTable();
+        clearForm();
+    });
+
+    function showStatus(msg, isError) {
+        const el = document.getElementById('statusMsg');
+        el.textContent = msg;
+        el.style.color = isError ? '#b91c1c' : '#15803d';
+        setTimeout(() => { el.textContent = ''; }, 3000);
+    }
+
+    function renderTable() {
+        const tbody = document.querySelector('#studentsTable tbody');
+        tbody.innerHTML = '';
+
+        const search = document.getElementById('search').value.toLowerCase();
+
+        let filtered = students.filter(s => {
+            const all =
+                s.nev.toLowerCase() + ' ' +
+                String(s.evfolyam) + ' ' +
+                s.szak.toLowerCase() + ' ' +
+                s.email.toLowerCase() + ' ' +
+                s.neptunkod.toLowerCase();
+            return all.includes(search);
+        });
+
+        const sortVal = document.getElementById('sortSelect').value;
+        if (sortVal === 'nevAsc') {
+            filtered.sort((a, b) => a.nev.localeCompare(b.nev, 'hu'));
+        } else if (sortVal === 'nevDesc') {
+            filtered.sort((a, b) => b.nev.localeCompare(a.nev, 'hu'));
+        } else if (sortVal === 'evAsc') {
+            filtered.sort((a, b) => a.evfolyam - b.evfolyam);
+        } else if (sortVal === 'evDesc') {
+            filtered.sort((a, b) => b.evfolyam - a.evfolyam);
+        }
+
+        filtered.forEach((s, index) => {
+            const tr = document.createElement('tr');
+
+            tr.innerHTML = `
+                <td>${s.nev}</td>
+                <td>${s.evfolyam}</td>
+                <td>${s.szak}</td>
+                <td>${s.email}</td>
+                <td>${s.neptunkod}</td>
+                <td class="actions">
+                    <button class="btn-table btn-edit" onclick="editStudent(${index})">
+                        <span class="icon">✎</span> Módosít
+                    </button>
+                    <button class="btn-table btn-delete" onclick="deleteStudent(${index})">
+                        <span class="icon">🗑</span> Töröl
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    document.getElementById('search').addEventListener('input', renderTable);
+    document.getElementById('sortSelect').addEventListener('change', renderTable);
+
+    window.editStudent = function(index) {
+        const s = students[index];
+        document.getElementById('nev').value = s.nev;
+        document.getElementById('evfolyam').value = s.evfolyam;
+        document.getElementById('szak').value = s.szak;
+        document.getElementById('email').value = s.email;
+        document.getElementById('neptunkod').value = s.neptunkod;
+
+        editIndex = index;
+        document.getElementById('saveBtn').textContent = 'Módosítás mentése';
+    }
+
+    window.deleteStudent = function(index) {
+        if (confirm('Biztosan törlöd a hallgatót?')) {
+            students.splice(index, 1);
+            saveToStorage();
+            renderTable();
+        }
+    }
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+        const dataStr = JSON.stringify(students, null, 2);
+        const blob = new Blob([dataStr], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'hallgatok_XBG3S6.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('importBtn').addEventListener('click', () => {
+        const fileInput = document.getElementById('importFile');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert('Nincs fájl kiválasztva!');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const imported = JSON.parse(e.target.result);
+                if (Array.isArray(imported)) {
+                    students = imported;
+                    saveToStorage();
+                    renderTable();
+                    showStatus('JSON import sikeres.', false);
+                } else {
+                    alert('Hibás JSON formátum!');
+                }
+            } catch (err) {
+                alert('Hiba a JSON importálása közben!');
+            }
+        };
+        reader.readAsText(file);
+    });
+</script>
+
+</body>
+</html>

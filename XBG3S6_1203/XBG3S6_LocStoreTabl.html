@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>XBG3S6_1203</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fdf2ff;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #a21caf;
+        margin-bottom: 10px;
+    }
+
+    .container {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 18px;
+        max-width: 900px;
+        margin: 15px auto;
+        box-shadow: 0 0 18px rgba(162, 28, 175, 0.18);
+        border: 2px solid #e9d5ff;
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #a21caf;
+        border-bottom: 1px solid #e9d5ff;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+    }
+
+    input[type="file"], input[type="text"] {
+        padding: 8px;
+        border-radius: 10px;
+        border: 1px solid #d8b4fe;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus {
+        outline: none;
+        border-color: #a855f7;
+        box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+    }
+
+    button {
+        padding: 8px 14px;
+        background: #d946ef;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #a21caf;
+    }
+
+    .top-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+    .info {
+        font-size: 12px;
+        color: #6b21a8;
+        margin-top: 5px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    th, td {
+        border: 1px solid #e5e7eb;
+        padding: 8px 10px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    th {
+        background: #f5f3ff;
+        color: #6b21a8;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    td {
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background: #fdf4ff;
+    }
+
+    tr:hover {
+        background: #fce7f3;
+    }
+</style>
+</head>
+<body>
+
+<h1>XBG3S6 Órarend JSON</h1>
+
+<div class="container">
+    <div class="section-title">XBG3S6 Órarend JSON</div>
+
+    <div class="top-row">
+        <input type="file" id="fileInput" accept="application/json">
+        <button id="loadBtn">LocalStorage betöltése</button>
+    </div>
+
+    <div class="section-title" style="margin-top:20px;">Keresés tárgy szerint</div>
+    <input type="text" id="search" placeholder="Pl.: Adatkezelés XML-ben" style="width:100%;">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tárgy</th>
+                <th>Nap</th>
+                <th>Től</th>
+                <th>Ig</th>
+                <th>Helyszín</th>
+                <th>Oktató</th>
+                <th>Szak</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const STORAGE_KEY = 'orarend_XBG3S6';
+    let lessons = [];
+
+    window.addEventListener('load', () => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+            try {
+                lessons = JSON.parse(stored);
+            } catch (e) {
+                lessons = [];
+            }
+        }
+        renderTable();
+    });
+
+    document.getElementById('loadBtn').addEventListener('click', () => {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert('Válassz ki egy JSON órarend fájlt!');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (Array.isArray(data)) {
+                    lessons = data;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(lessons));
+                    renderTable();
+                    alert('Órarend sikeresen betöltve a LocalStorage-be.');
+                } else {
+                    alert('A JSON nem tömb formátumú!');
+                }
+            } catch (err) {
+                alert('Hibás JSON fájl!');
+            }
+        };
+        reader.readAsText(file);
+    });
+
+    document.getElementById('search').addEventListener('input', renderTable);
+
+    function renderTable() {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+
+        const filter = document.getElementById('search').value.toLowerCase();
+
+        let filtered = lessons.filter(l =>
+            (l.targy || '').toLowerCase().includes(filter)
+        );
+
+        if (filtered.length === 0) {
+            const tr = document.createElement('tr');
+            const td = document.createElement('td');
+            td.colSpan = 7;
+            td.textContent = 'Nincs megjeleníthető óra.';
+            td.style.textAlign = 'center';
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+            return;
+        }
+
+        filtered.forEach(l => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${l.targy || ''}</td>
+                <td>${l.nap || ''}</td>
+                <td>${l.tol || ''}</td>
+                <td>${l.ig || ''}</td>
+                <td>${l.helyszin || ''}</td>
+                <td>${l.oktato || ''}</td>
+                <td>${l.szak || ''}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+</script>
+
+</body>
+</html>

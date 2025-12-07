@@ -1,0 +1,66 @@
+{
+  "owners": [
+    {
+      "nev": "Kelemen Beáta",
+      "cim": "3535 Miskolc Hegyalja út 4 fsz. 5 a.",
+      "tel": "06305764165",
+      "id": 1
+    },
+    {
+      "nev": "fwRG",
+      "cim": "SGY",
+      "tel": "SGRG",
+      "id": 2
+    },
+    {
+      "nev": "Kiss Péter",
+      "cim": "1138 Budapest Dunavirág utca 2-6",
+      "tel": "06307715666",
+      "id": 3
+    },
+    {
+      "nev": "Sprint Elek",
+      "cim": "3546 Miskolc Kazinczy utca 12",
+      "tel": "+368594745",
+      "id": 4
+    }
+  ],
+  "cars": [
+    {
+      "rendszam": "REH",
+      "tipus": "SAGEShs",
+      "szin": "sh",
+      "ev": 2020,
+      "ar": 55555,
+      "tulajId": 1,
+      "id": 1
+    },
+    {
+      "rendszam": "ABC123",
+      "tipus": "Suzuki",
+      "szin": "sárga",
+      "ev": 2005,
+      "ar": 700000,
+      "tulajId": 2,
+      "id": 2
+    },
+    {
+      "rendszam": "ABC589",
+      "tipus": "Mercedes",
+      "szin": "piros",
+      "ev": 2023,
+      "ar": 12000000,
+      "tulajId": 3,
+      "id": 3
+    },
+    {
+      "rendszam": "CBA321",
+      "tipus": "Nissan",
+      "szin": "zöld",
+      "ev": 2012,
+      "ar": 1200000,
+      "tulajId": 2,
+      "id": 4
+    }
+  ]
+}

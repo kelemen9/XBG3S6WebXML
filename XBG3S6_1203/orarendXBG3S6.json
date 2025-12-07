@@ -1,0 +1,38 @@
+[
+  {
+    "targy": "Adatkezelés XML-ben",
+    "nap": "szerda",
+    "tol": 8,
+    "ig": 10,
+    "helyszin": "A1/301",
+    "oktato": "Prof. Dr. Kovács László",
+    "szak": "BGI"
+  },
+  {
+    "targy": "Adatkezelés XML-ben",
+    "nap": "szerda",
+    "tol": 10,
+    "ig": 12,
+    "helyszin": "L/103",
+    "oktato": "Dr. Bednarik László",
+    "szak": "BGI"
+  },
+    {
+    "targy": "Vállalati információs rendszerek fejlesztése",
+    "nap": "szerda",
+    "tol": 14,
+    "ig": 16,
+    "helyszin": "L/103",
+    "oktato": "Dr. Sasvári Péter",
+    "szak": "BGI"
+  },
+    {
+    "targy": "Vállalati információs rendszerek fejlesztése",
+    "nap": "szerda",
+    "tol": 18,
+    "ig": 20,
+    "helyszin": "L/103",
+    "oktato": "Dr. Sasvári Péter",
+    "szak": "BGI"
+  }
+]
